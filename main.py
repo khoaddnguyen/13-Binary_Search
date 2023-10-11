@@ -24,7 +24,6 @@ def binary_search(list, target, low=None, high=None):
     if high < low:
         return -1
 
-    # example list = [1, 3, 5, 10, 12]
     # midpoint = len(list) // 2  # index 2
     midpoint = (low + high) // 2
 
@@ -36,3 +35,10 @@ def binary_search(list, target, low=None, high=None):
     else:
         # target > l[midpoint]
         return binary_search(list, target, midpoint+1, high)
+
+
+if __name__=="__main__":
+    list = [1, 3, 5, 10, 12]
+    target = 10
+    print(naive_search(list, target))
+    print(binary_search(list, target))
