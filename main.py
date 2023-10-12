@@ -1,3 +1,6 @@
+import random
+import time
+
 # Naive Search: simply scanning every single element and ask if equal to the target search
 #  if Yes, return index
 #  if No, return -1
@@ -38,7 +41,28 @@ def binary_search(list, target, low=None, high=None):
 
 
 if __name__=="__main__":
-    list = [1, 3, 5, 10, 12]
-    target = 10
-    print(naive_search(list, target))
-    print(binary_search(list, target))
+    # list = [1, 3, 5, 10, 12]
+    # target = 10
+    # print(naive_search(list, target))
+    # print(binary_search(list, target))
+
+    length = 10000
+    # build a sorted list of length 10000
+    sorted_list = set()
+    while len(sorted_list) < length:
+        sorted_list.add(random.randint(-3*length, 3*length))
+    sorted_list = sorted(list(sorted_list))
+
+    # run Naive Search
+    start = time.time()
+    for target in sorted_list:
+        naive_search(sorted_list, target)
+    end = time.time()
+    print("Naive search time: ", (end - start)/length, "seconds")
+
+    # run Binary Search
+    start = time.time()
+    for target in sorted_list:
+        binary_search(sorted_list, target)
+    end = time.time()
+    print("Binary search time: ", (end - start)/length, "seconds")
